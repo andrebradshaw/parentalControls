@@ -4,7 +4,7 @@
   "version": "0.001",
   "description" : "bring out your inner dictator",
   "content_scripts": [{
-    "matches": ["https://*"],
+    "matches": ["https://en.wikipedia.org/*"],
     "js": ["content.js"]
   }]
 }
