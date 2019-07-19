@@ -21,6 +21,24 @@
 
   //Interesting ideas: monitoring overrustle logs => allowing automatic blacklistings of streamers with matching chat
 */
+/* UNDER DEVELOPMENT
+  a simple chrome extension to monitor web traffic and allow an admin to control or report on what a user views.
+  Search By =>
+    type:
+      boolean strings (not as switch)
+    content:
+      URL,
+      text body,
+      read through transcripts on youtube =>
+   Blacklisting By =>
+    static url,
+    url search,
+    content search,
+
+  TODO:
+    create manifest.json with permissions for local storage,
+  //Interesting ideas: monitoring overrustle logs => allowing automatic blacklistings of streamers with matching chat
+*/
 
 var reg = (o, n) => o ? o[n] : '';
 var cn = (o, s) => o ? o.getElementsByClassName(s) : console.log(o);
@@ -56,11 +74,18 @@ function search(bool,target){
   });
 }
 
-var checkUrl = (bool) => search(bool,window.location.href);
-
-if(checkUrl('wikipedia') && search('deflationary theory',document.body.innerText)) {
-  document.body.innerHTML = ''; 
-  var c = ele('div');
-  attr(c,'style','position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; background: #1c1c1c;');
-  document.body.appendChild(c);
+async function initAuthority(){
+  var checkUrl = (bool) => search(bool,window.location.href);
+  if(checkUrl('wikipedia') && search('deflationary theory',document.body.innerText)) {
+    document.body.innerHTML = '';
+    var c = ele('div');
+    attr(c,'style','position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.2; font-family: monospace; color: #fff; font-size: 3em; text-align: center;');
+    document.body.appendChild(c);
+    c.style.opacity = '1';
+    c.style.background = '#1c1c1c';
+    c.style.transform = 'all 1333ms';
+    c.innerText = 'what are you doing?';
+  }
 }
+
+initAuthority()
