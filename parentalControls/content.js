@@ -1,28 +1,5 @@
 /* UNDER DEVELOPMENT
   a simple chrome extension to monitor web traffic and allow an admin to control or report on what a user views.
-
-  Search By => 
-    type: 
-      boolean strings (not as switch)
-
-    content: 
-      URL, 
-      text body,
-      read through transcripts on youtube => 
-
-   Blacklisting By =>
-    static url,
-    url search,
-    content search,
-    
-
-  TODO: 
-    create manifest.json with permissions for local storage, 
-
-  //Interesting ideas: monitoring overrustle logs => allowing automatic blacklistings of streamers with matching chat
-*/
-/* UNDER DEVELOPMENT
-  a simple chrome extension to monitor web traffic and allow an admin to control or report on what a user views.
   Search By =>
     type:
       boolean strings (not as switch)
@@ -79,12 +56,18 @@ async function initAuthority(){
   if(checkUrl('wikipedia') && search('deflationary theory',document.body.innerText)) {
     document.body.innerHTML = '';
     var c = ele('div');
-    attr(c,'style','position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.2; font-family: monospace; color: #fff; font-size: 3em; text-align: center;');
+    attr(c,'style','position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.2; font-family: background: #1c1c1c; monospace; color: #fff; font-size: 3em; text-align: center;');
     document.body.appendChild(c);
-    c.style.opacity = '1';
-    c.style.background = '#1c1c1c';
-    c.style.transform = 'all 1333ms';
-    c.innerText = 'what are you doing?';
+    spellOut('what are you doing...?',c);
+  }
+}
+
+async function spellOut(str,elm){
+  var arr = str.split('');
+  var input = '';
+  for(var i=0; i<arr.length; i++){
+    elm.innerText = input = input + arr[i];
+    await delay(rando(55));
   }
 }
 
