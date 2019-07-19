@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "authoritarian",
+  "version": "0.001",
+  "description" : "bring out your inner dictator",
+  "content_scripts": [{
+    "matches": ["https://*"],
+    "js": ["content.js"]
+  }]
+}
